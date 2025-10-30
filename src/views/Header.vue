@@ -7,7 +7,7 @@
     </div>
 
     <router-link :to="{name:'home'}" class="logo d-flex align-items-center justify-content-center">
-         <h1 class="sitename">Alex Smit</h1>
+         <h1 class="sitename" v-if="data">{{ data.name === '' ? 'Alex Smit' : data.name }}</h1>
     </router-link>
 
     <div class="social-links text-center">
@@ -44,9 +44,18 @@
   import('@/assets/js/link');
   
   export default {
-    setup(){
-     
+    data(){
+      return {
+        data:null,
+        error:null
+      }
     },
+    mounted(){
+      fetch('http://localhost:3000/data/hero.json')
+        .then((res) => (res.json()))
+        .then((json) => (this.data = json))
+        .catch((err) => console.log(err.message));
+    }
     
   }
 </script>
