@@ -1,0 +1,12 @@
+{
+    "left":[
+        {"title":"Spring boot", "progress":"95%" , "class":"spring-boot"},
+        {"title":"MySQL & Postgres", "progress":"75%", "class":"mysql"},
+        {"title":"Laravel", "progress":"90%", "class":"laravel"}
+    ],
+    "right":[
+        {"title":"Vue JS", "progress":"85%" , "class":"vue"},
+        {"title":"Javascript", "progress":"80%", "class":"js"},
+        {"title":"Photoshop", "progress":"55%", "class":"photoshop"}
+    ]
+}

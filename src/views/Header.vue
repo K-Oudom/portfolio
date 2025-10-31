@@ -30,7 +30,7 @@
             <router-link :to="{name:'resume'}" id="resume"><i class="bi bi-file-earmark-text navicon"></i>Resume</router-link>
         </li>
         <li>
-            <router-link :to="{name:'portfolio'}" id="portfolio"><i class="bi bi-images navicon"></i>Portfolio</router-link>
+            <router-link :to="{name:'portfolio'}" id="portfolio"><i class="bi bi-images navicon"></i>Hobbies</router-link>
         </li>
         <li>
             <router-link :to="{name:'contact'}" id="contact"><i class="bi bi-envelope navicon"></i>Contact</router-link>
