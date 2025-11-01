@@ -8,7 +8,7 @@
 
       <div class="container" v-if="hero">
         <h2>{{ hero.name === '' ? 'Alex Smit' : hero.name }}</h2>
-        <p>I'm <span class="typed" data-typed-items="Designer, Developer, Freelancer, Photographer">{{ hero.job === '' ? 'a Backend Developer' : hero.job }}</span><span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span><span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span></p>
+        <h1>I'm <span class="ityped" style="color: #149ddd;"></span></h1>
       </div>
 
     </section><!-- /Hero Section -->
@@ -205,7 +205,7 @@
                 <i class="bi bi-geo-alt flex-shrink-0"></i>
                 <div>
                   <h3>Address</h3> 
-                  <p>Phnom Penh, #No 119, St 02</p>
+                  <p>No.79, Street Kampuchea Krom Blvd (128), Phnom Penh 12251</p>
                 </div>
               </div><!-- End Info Item -->
   
@@ -225,7 +225,7 @@
                 </div>
               </div><!-- End Info Item -->
 
-              <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d48389.78314118045!2d-74.006138!3d40.710059!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a22a3bda30d%3A0xb89d1fe6bc499443!2sDowntown%20Conference%20Center!5e0!3m2!1sen!2sus!4v1676961268712!5m2!1sen!2sus" frameborder="0" style="border:0; width: 100%; height: 270px;" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2804.3307490331918!2d104.91422897318289!3d11.569152044075635!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31095127681ddaff%3A0xe7a6d05c6964187d!2sShinhan%20Bank%20Head%20Office!5e1!3m2!1sen!2skh!4v1761968934296!5m2!1sen!2skh%22%20width=%22600%22%20height=%22450%22%20style=%22border:0;%22%20allowfullscreen=%22%22%20loading=%22lazy%22%20referrerpolicy=%22no-referrer-when-downgrade" frameborder="0" style="border:0; width: 100%; height: 270px;" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
           </div>
 
@@ -273,7 +273,6 @@
 
   </main>
 </template>
-
 <script>
 
   export default {
@@ -283,10 +282,31 @@
         aboutData:null,
         error:null,
         skills:null,
-        hobbies:null
+        hobbies:null,
       }
     },
     mounted(){
+
+      // Create and load the external script dynamically
+      const script = document.createElement('script');
+      script.src = "https://unpkg.com/ityped@0.0.10";
+      script.onload = () => {
+        // Wait until the script is loaded, then initialize ityped
+        if (window.ityped) {
+          window.ityped.init(document.querySelector('.ityped'), {
+            strings: [
+              'a Backend Developer',
+              'a Devops Developer',
+              'a Designer'
+            ],
+            loop: true
+          });
+        } else {
+          console.error('ityped not found');
+        }
+      };
+      document.head.appendChild(script);
+
       fetch('http://localhost:3000/data/hero.json')
         .then((res) => res.json())
         .then((json) => (this.hero = json))
@@ -297,12 +317,18 @@
         .then((json) => (this.aboutData = json))
         .catch((err) => console.log(err.message))
 
+      fetch('http://localhost:3000/data/skills.json')
+        .then((res) => res.json())
+        .then((json) => (this.skills = json))
+        .catch((err) => console.log(err.message))
+
       fetch('http://localhost:3000/data/hobbies.json')
         .then((res) => res.json())
         .then((json) => (this.hobbies = json))
         .catch((err) => console.log(err.message))
     },
   }
+
 </script>
 
 <style scoped>

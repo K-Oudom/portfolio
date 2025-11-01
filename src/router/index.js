@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Home from '@/views/Body.vue';
 import About from '@/views/About.vue';
 import Resume from '@/views/Resume.vue';
-import Portfolio from '@/views/Portfolio.vue';
+import Skill from '@/views/Skill.vue';
 import Contact from '@/views/Contact.vue';
 
 const routes = [
@@ -22,9 +22,9 @@ const routes = [
     component: Resume,
   },
   {
-    path: '/portfolio',
-    name: 'portfolio',
-    component: Portfolio,
+    path: '/skill',
+    name: 'skill',
+    component: Skill,
   },
   {
     path: '/contact',

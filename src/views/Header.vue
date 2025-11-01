@@ -1,7 +1,7 @@
 <template>
-     <header id="header" class="header dark-background d-flex flex-column">
-    <i class="header-toggle d-xl-none bi bi-list"></i>
-
+  <header id="header" :class="`header dark-background d-flex flex-column ${menuActive}`">
+    <i :class="`header-toggle d-xl-none ${menuIcon}`" @click="toggleMenu"></i>
+    <!-- bi-x-lg -->
     <div class="profile-img">
       <img src="../assets/img/profile/me.png" alt="" class="img-fluid rounded-circle">
     </div>
@@ -30,7 +30,7 @@
             <router-link :to="{name:'resume'}" id="resume"><i class="bi bi-file-earmark-text navicon"></i>Resume</router-link>
         </li>
         <li>
-            <router-link :to="{name:'portfolio'}" id="portfolio"><i class="bi bi-images navicon"></i>Hobbies</router-link>
+            <router-link :to="{name:'skill'}" id="skill"><i class="bi bi-briefcase navicon"></i>Skill</router-link>
         </li>
         <li>
             <router-link :to="{name:'contact'}" id="contact"><i class="bi bi-envelope navicon"></i>Contact</router-link>
@@ -47,7 +47,9 @@
     data(){
       return {
         data:null,
-        error:null
+        error:null,
+        menuActive:null,
+        menuIcon:'bi bi-list'
       }
     },
     mounted(){
@@ -55,6 +57,19 @@
         .then((res) => (res.json()))
         .then((json) => (this.data = json))
         .catch((err) => console.log(err.message));
+    },
+
+    methods:{
+      toggleMenu(){
+        if(this.menuActive === null){
+          this.menuActive = 'active';
+          this.menuIcon = 'bi bi-x-lg';
+        }
+        else{
+          this.menuActive = null;
+          this.menuIcon = 'bi bi-list';
+        }
+      }
     }
     
   }
